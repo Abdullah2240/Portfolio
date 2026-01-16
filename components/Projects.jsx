@@ -14,22 +14,25 @@ export default function Projects() {
       title: 'Property Management System',
       description: 'A system for rural areas to keep record and manage properties through database integration',
       tags: ['Database', 'SQLite', 'React'],
-      image: '/project1.jpg', // Add image to public folder
-      link: 'https://github.com/yourusername/project',
+      image: '/project1.jpg', // Add screenshot to public folder
+      liveLink: '#',
+      githubLink: 'https://github.com/yourusername/project',
     },
     {
       title: 'Heart Disease Predictor',
       description: 'A heart disease predictor that predicts your likeliness of heart disease, model trained on UCI dataset',
       tags: ['ML models', 'Data Science'],
       image: '/project2.jpg',
-      link: '#',
+      liveLink: '#',
+      githubLink: '#',
     },
     {
       title: 'Portfolio Website',
       description: 'This portfolio website with 3D effects',
       tags: ['Next.js', 'Framer Motion', 'Three.js'],
       image: '/project3.jpg',
-      link: '#',
+      liveLink: '#',
+      githubLink: '#',
     },
   ]
 
@@ -42,7 +45,8 @@ export default function Projects() {
       description: 'A search engine on the OpenAlex web',
       tags: ['DSA', 'Embeddings', '50k articles'],
       image: '/group1.jpg',
-      link: '#',
+      liveLink: '#',
+      githubLink: '#',
       team: ['You', 'Saniya', 'Bilal'],
     },
     {
@@ -50,14 +54,17 @@ export default function Projects() {
       description: 'A site that turns a yt video to concise notes and then quizzes you from it',
       tags: ['AI', 'LLM'],
       image: '/group2.jpg',
-      link: '#',
+      liveLink: '#',
+      githubLink: '#',
       team: ['You', 'Huzaifa', 'Asim'],
-    },{
+    },
+    {
       title: 'ZeroDevAI',
       description: 'A site that turns voice prompt to a live frontend and then deploys it too',
       tags: ['LLM Wrapper', 'Azure VM'],
-      image: '/group2.jpg',
-      link: '#',
+      image: '/group3.jpg',
+      liveLink: '#',
+      githubLink: '#',
       team: ['You', 'Huzaifa', 'Asim'],
     },
   ]
@@ -120,46 +127,68 @@ export default function Projects() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {projects.map((project, index) => (
-            <motion.a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-secondary rounded-2xl overflow-hidden border border-accent/20 hover:border-accent/60 transition-all cursor-pointer group block"
+              whileHover={{ y: -8 }}
+              className="bg-secondary rounded-2xl overflow-hidden border border-accent/20 hover:border-accent/60 transition-all group"
             >
-              {/* Project Image */}
-              <div className="h-48 bg-gradient-to-br from-accent/30 via-purple-500/20 to-pink-500/20 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent z-10" />
-                <motion.div
-                  className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              {/* Screenshot Image */}
+              <div className="relative h-48 overflow-hidden bg-gray-900">
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.target.style.display = 'none'
+                    e.target.nextSibling.style.display = 'flex'
+                  }}
                 />
-                {/* Decorative elements */}
-                <div className="absolute top-4 right-4 w-20 h-20 bg-accent/30 rounded-full blur-2xl" />
-                <div className="absolute bottom-4 left-4 w-16 h-16 bg-purple-500/30 rounded-full blur-xl" />
+                {/* Fallback gradient if no image */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-accent/30 via-purple-500/20 to-pink-500/20 hidden items-center justify-center"
+                >
+                  <span className="text-4xl">📸</span>
+                </div>
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
               {/* Project Info */}
               <div className="p-6">
+                {/* Title */}
                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
+
+                {/* One-liner description */}
                 <p className="text-gray-400 mb-4 text-sm leading-relaxed">
                   {project.description}
                 </p>
 
+                {/* Tech Stack Tags */}
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-gray-300 text-xs"
+                    >
+                      {tag} {project.tags.indexOf(tag) < project.tags.length - 1 && '•'}
+                    </span>
+                  ))}
+                </div>
+
                 {/* Team members for group projects */}
                 {project.team && (
-                  <div className="mb-4 flex items-center gap-2">
+                  <div className="mb-5 flex items-center gap-3">
                     <span className="text-xs text-gray-500">Team:</span>
                     <div className="flex -space-x-2">
-                      {project.team.map((member, i) => (
+                      {project.team.map((member) => (
                         <div
                           key={member}
-                          className="w-6 h-6 rounded-full bg-accent/50 border-2 border-secondary flex items-center justify-center text-xs text-white"
+                          className="w-7 h-7 rounded-full bg-gradient-to-br from-accent to-purple-500 border-2 border-secondary flex items-center justify-center text-xs text-white font-medium"
                           title={member}
                         >
                           {member[0]}
@@ -169,19 +198,27 @@ export default function Projects() {
                   </div>
                 )}
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-accent/10 text-accent text-xs rounded-full font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 px-4 py-2.5 bg-accent text-white text-sm font-medium rounded-lg text-center hover:bg-accent/80 hover:shadow-lg hover:shadow-accent/30 transition-all"
+                  >
+                    🌐 Live Demo
+                  </a>
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 px-4 py-2.5 border border-accent/50 text-accent text-sm font-medium rounded-lg text-center hover:bg-accent/10 transition-all"
+                  >
+                    💻 GitHub
+                  </a>
                 </div>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </motion.div>
 
