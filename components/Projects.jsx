@@ -15,7 +15,8 @@ export default function Projects() {
       description: 'A system for rural areas to keep record and manage properties through database integration',
       tags: ['Database', 'SQLite', 'React'],
       image: '/project1.jpg', // Add screenshot to public folder
-      liveLink: '#',
+      demoLink: '#',
+      staticLink: '#',
       githubLink: 'https://github.com/yourusername/project',
     },
     {
@@ -23,15 +24,17 @@ export default function Projects() {
       description: 'A heart disease predictor that predicts your likeliness of heart disease, model trained on UCI dataset',
       tags: ['ML models', 'Data Science'],
       image: '/project2.jpg',
-      liveLink: '#',
-      githubLink: '#',
+      demoLink: '#',
+      staticLink: 'heart-disease-predicter-o7wnaff14.vercel.app',
+      githubLink: 'https://github.com/Abdullah2240/heart-disease-predicter',
     },
     {
       title: 'Portfolio Website',
       description: 'This portfolio website with 3D effects',
       tags: ['Next.js', 'Framer Motion', 'Three.js'],
       image: '/project3.jpg',
-      liveLink: '#',
+      demoLink: '#',
+      staticLink: '#',
       githubLink: '#',
     },
   ]
@@ -45,27 +48,27 @@ export default function Projects() {
       description: 'A search engine on the OpenAlex web',
       tags: ['DSA', 'Embeddings', '50k articles'],
       image: '/group1.jpg',
-      liveLink: '#',
-      githubLink: '#',
-      team: ['You', 'Saniya', 'Bilal'],
+      demoLink: '#',
+      staticLink: '#',
+      githubLink: 'https://github.com/Abdullah2240/DSA-project-search-engine.git',
     },
     {
       title: 'InstaNote',
       description: 'A site that turns a yt video to concise notes and then quizzes you from it',
       tags: ['AI', 'LLM'],
       image: '/group2.jpg',
-      liveLink: '#',
-      githubLink: '#',
-      team: ['You', 'Huzaifa', 'Asim'],
+      demoLink: '#',
+      staticLink: '#',
+      githubLink: 'https://github.com/Abdullah2240/InstaNote',
     },
     {
       title: 'ZeroDevAI',
       description: 'A site that turns voice prompt to a live frontend and then deploys it too',
       tags: ['LLM Wrapper', 'Azure VM'],
       image: '/group3.jpg',
-      liveLink: '#',
+      demoLink: '#',
+      staticLink: '#',
       githubLink: '#',
-      team: ['You', 'Huzaifa', 'Asim'],
     },
   ]
 
@@ -180,28 +183,10 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Team members for group projects */}
-                {project.team && (
-                  <div className="mb-5 flex items-center gap-3">
-                    <span className="text-xs text-gray-500">Team:</span>
-                    <div className="flex -space-x-2">
-                      {project.team.map((member) => (
-                        <div
-                          key={member}
-                          className="w-7 h-7 rounded-full bg-gradient-to-br from-accent to-purple-500 border-2 border-secondary flex items-center justify-center text-xs text-white font-medium"
-                          title={member}
-                        >
-                          {member[0]}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
                 {/* Action Buttons */}
                 <div className="flex gap-3">
                   <a
-                    href={project.liveLink}
+                    href={project.demoLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 px-4 py-2.5 bg-accent text-white text-sm font-medium rounded-lg text-center hover:bg-accent/80 hover:shadow-lg hover:shadow-accent/30 transition-all"
@@ -209,10 +194,18 @@ export default function Projects() {
                     🌐 Live Demo
                   </a>
                   <a
-                    href={project.githubLink}
+                    href={project.staticLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 px-4 py-2.5 border border-accent/50 text-accent text-sm font-medium rounded-lg text-center hover:bg-accent/10 transition-all"
+                  >
+                    🖥 Static Site
+                  </a>
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 px-4 py-2.5 bg-gray-600 text-white text-sm font-medium rounded-lg text-center hover:bg-gray-500 hover:shadow-lg transition-all"
                   >
                     💻 GitHub
                   </a>
